@@ -16,7 +16,7 @@ public class task3 {
     public static void main(String[] args) {
         Scanner iScanner = new Scanner(System.in);
         System.out.println("Введите кол-во километров в первый день: ");
-        double x = iScanner.nextInt();
+        double x = iScanner.nextDouble();
         System.out.println("Введите кол-во километров: ");
         int y = iScanner.nextInt();
         int count = 1;
