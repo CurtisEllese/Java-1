@@ -34,5 +34,6 @@ public class task5 {
         for (int i = a; i >= b; i -= c) {
             System.out.println(i);
         }
+        sc.close();
     }
 }
