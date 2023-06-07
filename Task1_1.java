@@ -7,5 +7,6 @@ public class Task1_1 {
         System.out.print("Введите имя пользователя: ");
         String name = sc.nextLine();
         System.out.println("Привет, " + name);
+        sc.close();
     }
 }
