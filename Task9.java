@@ -10,21 +10,40 @@ public class Task9 {
     public static void main(String[] args) {
         int[] nums = {3, 3, 3, 2, 4, 3, 1, 5, 3, 3}; 
         int val = 3;
-        for (int i = 1; i < nums.length - i; i++) {
-            if (nums[i - 1] == val) {
-                nums[i - 1] = nums[i];
-                for (int j = i; j < nums.length - 1; j++) { 
-                    nums[j] = nums[j + 1];
-                }
-                nums[nums.length - 1] = val;
-                i--;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[count++] = nums[i];
             }
+        }
+        while (count < nums.length) {
+            nums[count++] = val;
         }
         for (int i : nums) {
             System.out.println(i);
         }
     }
 }
+
+// public class Task9 {
+//     public static void main(String[] args) {
+//         int[] nums = {3, 3, 3, 2, 4, 3, 1, 5, 3, 3}; 
+//         int val = 3;
+//         for (int i = 1; i < nums.length - i; i++) {
+//             if (nums[i - 1] == val) {
+//                 nums[i - 1] = nums[i];
+//                 for (int j = i; j < nums.length - 1; j++) { 
+//                     nums[j] = nums[j + 1];
+//                 }
+//                 nums[nums.length - 1] = val;
+//                 i--;
+//             }
+//         }
+//         for (int i : nums) {
+//             System.out.println(i);
+//         }
+//     }
+// }
 
 // public class Task9 {
 //     public static void main(String[] args) {
