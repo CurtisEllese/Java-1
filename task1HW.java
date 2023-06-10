@@ -11,9 +11,9 @@ public class task1HW {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Введите первое число: ");
+        System.out.print("Введите первое число: ");
         int first_num = sc.nextInt();
-        System.out.println("Введите второе число: ");
+        System.out.print("Введите второе число: ");
         int second_num = sc.nextInt();
         System.out.println("Выберите операцию:\n1 - сложить\n2 - вычесть\n3 - умножить\n4 - разделить");
         int operation = sc.nextInt();
