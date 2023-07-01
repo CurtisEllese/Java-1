@@ -8,21 +8,23 @@
 
 // 4) К калькулятору из предыдущего ДЗ добавить логирование.
 
-import java.io.FileWriter;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class task1HW {
     public static void main(String[] args) {
-        FileWriter file = null;
         Scanner sc = new Scanner(System.in);
+        Logger logger = Logger.getLogger(task1HW.class.getName());
         
         try {
-            file = new FileWriter("calc_log.txt", true);
+            FileHandler info = new FileHandler("calc_log.txt", true);
             
+            logger.addHandler(info);
+            SimpleFormatter formatter = new SimpleFormatter();
+            info.setFormatter(formatter);
 
             System.out.print("Введите первое число: ");
             int first_num = sc.nextInt();
@@ -33,58 +35,27 @@ public class task1HW {
             switch (operation) {
                 case 1:
                     System.out.printf("%d + %d = %d\n", first_num, second_num, first_num + second_num);
-                    file.write(String.format("%d + %d = %d\n", first_num, second_num, first_num + second_num));
+                    logger.log(Level.INFO, String.format("%d + %d = %d", first_num, second_num, first_num + second_num));
                     break;
                 case 2:
                     System.out.printf("%d - %d = %d\n", first_num, second_num, first_num - second_num);
-                    file.write(String.format("%d - %d = %d\n", first_num, second_num, first_num - second_num));
+                    logger.log(Level.INFO, String.format("%d - %d = %d", first_num, second_num, first_num - second_num));
                     break;
                 case 3:
                     System.out.printf("%d * %d = %d\n", first_num, second_num, first_num * second_num);
-                    file.write(String.format("%d * %d = %d\n", first_num, second_num, first_num * second_num));
+                    logger.log(Level.INFO, String.format("%d * %d = %d", first_num, second_num, first_num * second_num));
                     break;
                 case 4:
                     System.out.printf("%d / %d = %d\n", first_num, second_num, first_num / second_num);
-                    file.write(String.format("%d / %d = %d\n", first_num, second_num, first_num / second_num));
+                    logger.log(Level.INFO, String.format("%d / %d = %d", first_num, second_num, first_num / second_num));
                     break;
                 default:
                     break;
-            }
-
-        } catch (Exception e) {
-            System.err.println("Ошибка при чтении файла: " + e.getMessage());
-        } finally {
-            try {
-                if (file != null) {
-                    file.close();
                 }
-            } catch (IOException e) {
-                System.err.println("Ошибка при закрытии FileWriter: " + e.getMessage());
-            }
-        }
-
-        try {
-            System.out.println("Если вы хотите очистить файл логов нажмите 9");
-            int operation2 = sc.nextInt();
-            switch (operation2) {
-                case 9:
-                    boolean isDeleted = new File("calc_log.txt").delete();
-                    if (isDeleted) {
-                        System.out.println("Файл успешно удален.");
-                    } else {
-                        System.out.println("Не удалось удалить файл.");
-                    }
-                    Files.createFile(Paths.get("calc_log.txt"));
-                    System.out.println("Файл успешно создан.");
-                    break;
-            
-                default:
-                    break;
-            }
 
             sc.close();
-        } catch (IOException e) {
-            System.err.println("Ошибка при удалении файла или создании нового файла: " + e.getMessage());
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Ошибка при чтении файла: " + e.getMessage());
         }
     }
 }
