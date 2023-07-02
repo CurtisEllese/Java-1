@@ -1,7 +1,6 @@
 // Заполнить список десятью случайными числами, отсортировать его с помощью метода sort() и вывести на экран.
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Random;
 
 public class Task18 {
