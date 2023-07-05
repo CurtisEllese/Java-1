@@ -12,31 +12,27 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class Task24 {
     static int dequeToInt(Deque<Integer> intDeq) {
-        int res = 0;
-        int multiplier = 1;
+        int res;
+        StringBuilder stringNum = new StringBuilder();
 
-        Iterator<Integer> iterator = intDeq.iterator();
-        while (iterator.hasNext()) {
-            res += iterator.next() * multiplier;
-            multiplier *= 10;
+        while (!intDeq.isEmpty()) {
+            stringNum.append(intDeq.removeLast());
         }
+
+        res = Integer.parseInt(stringNum.toString());
 
         return res;
     }
 
-
-    static LinkedList<Integer> multiplyTwoIntDeque(Deque<Integer> deq1, Deque<Integer> deq2) {
+    static LinkedList<Integer> multiplyTwoIntInList(int number1, int number2) {
         LinkedList<Integer> res = new LinkedList<>();
-        int num1 = dequeToInt(deq1);
-        int num2 = dequeToInt(deq2);
-        int resVal = num1 * num2;
-        System.out.printf("%d * %d = %d", num1, num2, resVal);
+        int resVal = number1 * number2;
+        System.out.printf("%d * %d = %d", number1, number2, resVal);
         System.out.println();
 
         ArrayList<String> multiplyRes = new ArrayList<>();
@@ -54,12 +50,10 @@ public class Task24 {
         return res;
     }
 
-    static LinkedList<Integer> additionTwoIntDeque(Deque<Integer> deq1, Deque<Integer> deq2) {
+    static LinkedList<Integer> additionTwoIntInList(int number1, int number2) {
         LinkedList<Integer> res = new LinkedList<>();
-        int num1 = dequeToInt(deq1);
-        int num2 = dequeToInt(deq2);
-        int resVal = num1 + num2;
-        System.out.printf("%d + %d = %d", num1, num2, resVal);
+        int resVal = number1 + number2;
+        System.out.printf("%d + %d = %d", number1, number2, resVal);
         System.out.println();
 
         ArrayList<String> additionRes = new ArrayList<>();
@@ -103,11 +97,14 @@ public class Task24 {
         
         System.out.println("Deque 1: " + deqNum1);
         System.out.println("Deque 2: " + deqNum2);
+        int num1 = dequeToInt(deqNum1);        
+        int num2 = dequeToInt(deqNum2);
+
         
-        LinkedList<Integer> multiplyResult = multiplyTwoIntDeque(deqNum1, deqNum2);
+        LinkedList<Integer> multiplyResult = multiplyTwoIntInList(num1, num2);
         System.out.println("Result in Linked List: " + multiplyResult);
 
-        LinkedList<Integer> additionResult = additionTwoIntDeque(deqNum1, deqNum2);
+        LinkedList<Integer> additionResult = additionTwoIntInList(num1, num2);
         System.out.println("Result in Linked List: " + additionResult);
     }
 }
